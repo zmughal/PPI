@@ -59,6 +59,7 @@ use Params::Util    qw{_STRING _INSTANCE};
 use PPI             ();
 use PPI::Exception  ();
 use PPI::Singletons '%_PARENT';
+use PPI::FP;
 
 # VERSION
 
@@ -357,6 +358,7 @@ my %STATEMENT_CLASSES = (
 	# 'sub'     => 'PPI::Statement::Sub',
 	# 'sub'     => 'PPI::Statement::Scheduled',
 	# 'sub'     => 'PPI::Statement',
+	( map { ( $_ => 'PPI::Statement::Sub' ) } PPI::FP::SUBNAMES ),
 
 	# Compound statement
 	'if'        => 'PPI::Statement::Compound',

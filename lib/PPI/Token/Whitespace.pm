@@ -44,6 +44,7 @@ provided by the parent L<PPI::Token> and L<PPI::Element> classes.
 use strict;
 use Clone      ();
 use PPI::Token ();
+use PPI::FP;
 
 # VERSION
 
@@ -227,7 +228,12 @@ sub __TOKENIZER__on_char {
 			and
 			$p1->isa('PPI::Token::Word')
 			and
+			(
 			$p1->content eq 'sub'
+			||
+			$p1->content =~ PPI::FP::SUBNAMES_RE
+			)
+
 			and (
 				not $p2
 				or
